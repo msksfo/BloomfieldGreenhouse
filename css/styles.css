@@ -1,0 +1,860 @@
+/* ================================================================ */
+/*                       Global Styles                              */
+/*==================================================================*/
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+h2 {
+    font-weight: 500;
+    text-align: center;
+}
+
+:root {
+    --dark-gray: #333;
+    --flower-yellow: #fbd135;
+    --green: #118752;
+    --lighter-green: #629f41;
+    --not-white: #f7f7f7;
+}
+
+body {
+    margin-top: 0;
+    font-size: 1rem;
+    color: var(--dark-gray);
+    line-height: 1.5;
+    font-family: 'Thasadith', sans-serif;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* this span element accounts for the sticky header, and accordingly adjusts the scrolled location of the anchor link */
+.nav-offset {
+    display: block;
+    height: 6rem;
+    margin-top: -6rem;
+    visibility: hidden;
+}
+
+/* ================================================================ */
+/*                       Header Section                             */
+/*==================================================================*/
+
+header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: white;
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid #f2cda7;
+}
+
+.logo {
+    display: grid;
+    line-height: initial;
+}
+
+.logo-link {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.8rem;
+    color: var(--dark-gray);
+    margin-bottom: 0.4rem;
+}
+
+.logo-link:hover,
+.logo-link:focus {
+    color: var(--lighter-green);
+}
+
+.planting-zone {
+    font-size: 1.14rem;
+}
+
+/* ===== Mobile Menu Icon ===== */
+.mobile-icon {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    width: 35px;
+    border-top: 6px solid var(--dark-gray);
+    border-bottom: 6px solid var(--dark-gray);
+    transition: all 0.2s ease;
+}
+
+.mobile-icon:hover,
+.mobile-icon:focus {
+    border-top: 6px solid var(--green);
+    border-bottom: 6px solid var(--green);
+    cursor: pointer;
+}
+
+.mobile-icon:hover .middle,
+.mobile-icon:focus .middle {
+    background-color: var(--green);
+}
+
+.middle {
+    width: 35px;
+    height: 6px;
+    background-color: var(--dark-gray);
+    transition: all 0.2s ease;
+}
+
+/* ===== Mobile Navigation ===== */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: var(--green);
+    opacity: 0.925;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: all 0.4s;
+
+    opacity: 0;
+    visibility: hidden;
+}
+
+.isOpen {
+    width: 300px;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* the ul styles */
+.mobile-nav-list {
+    list-style: none;
+    padding: 0;
+}
+
+.mobile-nav a {
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+    padding: 10px 10px 10px 20px;
+    font-size: 1.3rem;
+    transition: all 0.25s ease;
+}
+
+.mobile-nav a:hover,
+.mobile-nav a:focus {
+    background-color: #fff;
+    color: var(--green);
+    transform: scale(1.05);
+}
+
+.close-mobileNav-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #fff;
+    color: var(--green);
+    font-size: 1.3rem;
+    padding: 10px 15px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.close-mobileNav-button:hover,
+.close-mobileNav-button:focus {
+    cursor: pointer;
+    background-color: var(--flower-yellow);
+    color: var(--dark-gray);
+}
+
+/* ====== Full Width Navigation ===== */
+.full-width-nav {
+    display: none;
+}
+
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.nav-link {
+    color: var(--dark-gray);
+    font-size: 1.3rem;
+    padding: 8px 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    /* necessary for the underline animation on hover */
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background-color: var(--flower-yellow);
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: 50% 50%;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* underline animation beginning in the center, moving outward */
+.nav-link:hover::after,
+.nav-link:focus::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* ========================= Hero Image ======================== */
+
+.hero-image {
+    background-image: url('../assets/images/cropped/hero3.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: calc(100vh - 108px);
+    background-attachment: scroll;
+}
+
+/* ================================================================ */
+/*                        About Section                             */
+/*==================================================================*/
+
+.about {
+    padding: 3rem 1rem;
+    background-color: var(--not-white);
+}
+
+.section-header {
+    font-size: 1.7rem;
+}
+
+.about-content {
+    background-color: white;
+    display: grid;
+    grid-gap: 1rem;
+    padding: 1rem;
+    border: 2px solid var(--green);
+}
+
+.profile-figure {
+    margin: 0;
+    max-width: 100%;
+}
+
+.profile-pic {
+    max-width: 100%;
+}
+
+.signature {
+    font-size: 1.3rem;
+    letter-spacing: 1.1px;
+}
+
+.signature > span {
+    font-family: 'Cedarville Cursive', cursive;
+}
+
+.about-text {
+    font-size: 1.1rem;
+}
+
+/* this highlights the hashtag */
+mark {
+    background-color: #fdecaa;
+}
+
+/* ================================================================ */
+/*                       Plants Section                             */
+/*==================================================================*/
+
+.plants {
+    padding: 3rem 1rem;
+}
+
+.plant-border,
+.flower-border {
+    height: 150px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.plant,
+.flower {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==== quote ===== */
+.quote-wrapper {
+    padding: 3rem 0;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+}
+
+.quote {
+    grid-column: 2;
+    text-align: center;
+}
+
+.quote-author {
+    margin-top: 0.5rem;
+    font-size: 1.3rem;
+    letter-spacing: 1.2px;
+    font-family: 'Charm', cursive;
+}
+
+.quote-text {
+    font-size: 1.6rem;
+    font-family: 'Charm', cursive;
+    letter-spacing: 1.2px;
+}
+
+q.quote-text:before,
+q.quote-text:after {
+    font-family: 'Charm', cursive;
+}
+
+/* the grid of plant types/descriptions */
+.plants-content {
+    display: grid;
+    margin-bottom: calc(3rem + 20px);
+    position: relative;
+}
+
+.plant-title {
+    padding: 0 0.3rem;
+
+    /* to keep the text center aligned */
+    align-self: stretch;
+}
+
+.plant-text {
+    padding: 0 1rem;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    transition: all 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* the paragraph text describing each type of plant */
+.plant-type-description {
+    /* because display flex on the parent does not collapse margins */
+    margin-top: 0;
+}
+
+/* 'view all' button -> opens the modal */
+.open-modal {
+    border-radius: 28px;
+    font-size: 1rem;
+    padding: 8px 12px;
+    outline: none;
+    border: 1px solid var(--lighter-green);
+    background-color: #fff;
+    font-family: 'Thasadith', sans-serif;
+
+    /* stick the button to the bottom of it's parent container */
+    margin: auto 0 1.25rem 0;
+}
+
+.open-modal:hover,
+.open-modal:focus {
+    cursor: pointer;
+    background: radial-gradient(
+            50% 50% at 50% 50%,
+            #faffd1 0%,
+            var(--lighter-green) 100%
+        )
+        no-repeat 50% 50% / 100% 100%;
+}
+
+/* create a gradient as bottom border */
+.plant-text:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    padding-top: 0.2rem;
+    margin-top: 3rem;
+    background: linear-gradient(
+        to right,
+        #fff,
+        var(--flower-yellow) 50%,
+        #fff 100%
+    );
+}
+
+.no-pseudo-elem:after {
+    content: none;
+}
+
+/* =============================================================== */
+/*                      Plant Modals                               */
+/* =============================================================== */
+
+.plants-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    background-color: #8dad87;
+    background-image: url('../assets/images/swirl.png');
+    background-repeat: repeat;
+    transform: scaleX(0);
+    transform-origin: top left;
+    transition: transform 1s 0.2s ease-in-out;
+}
+
+.plants-modal-expanded {
+    transform: scaleX(1);
+}
+
+.modal-grid {
+    display: grid;
+    grid-gap: 20px;
+    margin: 0 20px 20px;
+}
+
+.modal-item-header {
+    margin: 0;
+    padding: 19.92px 0;
+    background-color: #326528;
+    color: white;
+}
+
+.modal-item {
+    background-color: white;
+    visibility: hidden;
+    opacity: 0;
+}
+
+/* growing tips */
+details {
+    padding: 0 1rem 1rem;
+}
+
+summary {
+    padding: 5px;
+    font-style: italic;
+}
+
+details p {
+    margin-top: 8px;
+    font-family: initial;
+}
+
+/* use animations to show/hide modal content, because transitions alone wont work on content created dynamically with js */
+.show-modal-content {
+    animation: slideUp 1.3s 0.7s ease-in-out forwards;
+}
+
+.hide-modal-content {
+    animation: slideDown 0.2s 0.1s ease-in-out both;
+}
+
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(60px);
+    }
+
+    100% {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    100% {
+        transform: translateY(60px);
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* the back button, to close the modal */
+.close-modal-button {
+    font-size: 1rem;
+    margin: 20px 20px 20px auto;
+    padding: 8px;
+    border: 3px solid var(--flower-yellow);
+    background-color: white;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.close-modal-button:hover,
+.close-modal-button:focus {
+    background-color: var(--flower-yellow);
+    cursor: pointer;
+    border-radius: 5px;
+    border: 3px solid white;
+}
+
+.left-arrow {
+    font-size: 1.1rem;
+}
+
+/* ================================================================ */
+/*                       Gifts Section                              */
+/* ================================================================ */
+
+.gifts {
+    background-color: var(--not-white);
+    padding: 3rem 1rem;
+}
+
+.gifts-content {
+    display: grid;
+    grid-gap: 1rem;
+}
+
+.gifts-figure {
+    margin: 0;
+    max-width: 100%;
+}
+
+.gifts-img {
+    max-width: 100%;
+}
+
+.gifts-text {
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+/* ================================================================ */
+/*                       Contact Section                            */
+/*==================================================================*/
+
+.contact {
+    padding: 3rem 1rem 0 1rem;
+}
+
+.contact-content {
+    background-image: url('../assets/images/greenhouse.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.contact-method-wrapper {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.icon-wrapper {
+    margin-right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid purple;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+/* make the anchor tag wrapping around the icon 100% height/width of parent. center the icon */
+.icon-wrapper > a {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.icon {
+    font-size: 2.5rem;
+    color: purple;
+}
+
+/* hover/focus state color for telephone and fb icons */
+.icon-wrapper > a:hover .icon,
+.icon-wrapper > a:focus .icon {
+    color: var(--lighter-green);
+}
+
+.icon-wrapper > a:hover,
+.icon-wrapper > a:focus {
+    border: 3px solid var(--lighter-green);
+}
+
+.info {
+    font-size: 1.1rem;
+    color: white;
+    letter-spacing: 1.2px;
+}
+
+.info-link:hover {
+    text-decoration: underline;
+    text-underline-position: under;
+    text-decoration-color: var(--lighter-green);
+}
+
+/* ======= the map ======= */
+
+.map-outer-wrapper {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2rem 1rem 100px 1rem;
+}
+
+.find {
+    padding: 15px 0 30px 0;
+    margin: 0 auto;
+    color: white;
+    text-align: center;
+    width: 140px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: 300;
+    border-top: 1px solid white;
+    letter-spacing: 1.5px;
+}
+
+.map-inner-wrapper {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.contact-map {
+    position: relative;
+    height: 0;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+}
+
+iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+/* ================================================================ */
+/*                             Footer                               */
+/*==================================================================*/
+
+footer {
+    padding: 1rem;
+    border-bottom: 1px solid var(--flower-yellow);
+}
+
+footer p {
+    text-align: center;
+    margin: 0;
+}
+
+.tangoecho {
+    color: var(--dark-gray);
+    transition: all 0.3s ease;
+}
+
+.tangoecho:hover,
+.tangoecho:focus {
+    color: purple;
+    font-weight: bold;
+}
+
+/* ================================================================ */
+/*                        Media Queries                             */
+/*==================================================================*/
+
+@media screen and (min-width: 500px) {
+    header {
+        grid-template-columns: repeat(2, auto);
+    }
+
+    .logo-link {
+        text-align: right;
+    }
+
+    .nav-offset {
+        height: 3rem;
+        margin-top: -3rem;
+    }
+
+    .planting-zone {
+        text-align: right;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .contact-info {
+        display: flex;
+    }
+
+    .contact-method-wrapper {
+        flex: 1;
+        flex-direction: column;
+    }
+
+    .icon-wrapper {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and (min-width: 780px) {
+    .hero-image {
+        background-attachment: fixed;
+    }
+
+    /* ==== about ==== */
+    .about-content,
+    .gifts-content {
+        grid-template-columns: 1fr 2fr;
+    }
+
+    .signature {
+        text-align: center;
+    }
+
+    /* === plants ==== */
+    .plants-content {
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 1rem;
+    }
+
+    .plant-text:after {
+        content: none;
+    }
+
+    .plant-text {
+        margin: 0;
+    }
+
+    .bottom {
+        border-bottom: 1px solid var(--flower-yellow);
+    }
+
+    .right {
+        border-right: 1px solid var(--flower-yellow);
+    }
+
+    .left {
+        border-left: 1px solid var(--flower-yellow);
+    }
+
+    .top {
+        border-top: 1px solid var(--flower-yellow);
+    }
+
+    /* ======== modal grid ======= */
+    .modal-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* ====== food section ===== */
+    .food-content {
+        grid-template-columns: 1fr 1fr 1fr;
+        border-left: 1px solid var(--green);
+        padding-left: 1rem;
+    }
+
+    /* eleminate top margin on first paragraph in text-containers */
+    .no-top-margin {
+        margin-top: 0;
+    }
+
+    .about-text,
+    .gifts-text {
+        padding: 0 2rem;
+    }
+
+    .gifts-text {
+        text-align: center;
+    }
+
+    .list-container {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+    }
+
+    .section-list {
+        grid-column: 2;
+    }
+
+    /* ==== gifts ==== */
+    .gifts-text-container {
+        display: grid;
+        align-items: center;
+    }
+
+    .gifts-text {
+        width: 60%;
+        margin: 0 auto;
+        border-top: 1px solid #6aaa5d;
+        border-bottom: 1px solid #6aaa5d;
+        padding: 30px 2rem;
+    }
+}
+
+@media screen and (min-width: 850px) {
+    header {
+        display: flex;
+    }
+
+    .logo-link {
+        text-align: left;
+    }
+
+    .planting-zone {
+        text-align: left;
+    }
+
+    .mobile-icon,
+    .mobile-nav {
+        display: none;
+    }
+
+    .full-width-nav {
+        display: block;
+    }
+
+    .hero-image {
+        background-attachment: fixed;
+    }
+}
